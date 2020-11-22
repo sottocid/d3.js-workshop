@@ -1,26 +1,26 @@
-﻿uni  ,province ,enrollment  
-McEwan University ,Alberta,12693
-University of Alberta ,Alberta,29814
-University of Calgary ,Alberta,26182
-University of Lethbridge ,Alberta,7649
-Simon Fraser ,British Columbia ,12919
-Thompson Rivers Univeristy ,British Columbia ,8317
-University of British Columbia ,British Columbia ,38417
-University of Victoria ,British Columbia ,14631
-University of Winnipeg ,Manitoba ,7542
-University of Mantioba ,Manitoba ,22456
-Dalhousie University ,Nova Scotia ,13615
-Saint Mary's University ,Nova Scotia ,5474
-McMaster University ,Ontario,28900
-Queen's University ,Ontario,21400
-University of Ottawa ,Ontario,31700
-University of Toronto ,Ontario,65600
-Univerity of Waterloo ,Ontario,33100
-York University ,Ontario,42900
-Concordia University ,Quebec ,21278
-McGill University ,Quebec ,23907
-Universite de Montreal ,Quebec ,25689
-Universite du Sherbrooke ,Quebec ,11973
-Universite Laval ,Quebec ,22155
-University of Regina ,Saskatchewan ,9822
-University of Saskatchewan ,Saskatchewan ,16805
+﻿uni  ,country ,enrollment  
+McEwan University ,canada,12693
+University of Alberta ,canada,29814
+University of Calgary ,canada,26182
+University of Lethbridge ,canada,7649
+Simon Fraser ,canada ,12919
+Thompson Rivers Univeristy ,canada ,8317
+University of British Columbia ,canada ,38417
+University of Victoria ,canada,14631
+University of Winnipeg ,canada ,7542
+University of Mantioba ,canada ,22456
+Dalhousie University ,canada ,13615
+Saint Mary's University ,canada ,5474
+McMaster University ,canada,28900
+Queen's University ,canada,21400
+University of Ottawa ,canada,31700
+University of Toronto ,canada,65600
+Univerity of Waterloo ,canada,33100
+York University ,canada,42900
+Concordia University ,canada ,21278
+McGill University ,canada ,23907
+Universite de Montreal ,canada ,25689
+Universite du Sherbrooke ,canada ,11973
+Universite Laval ,canada ,22155
+University of Regina ,canada ,9822
+University of Saskatchewan ,canada ,16805
