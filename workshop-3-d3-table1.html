@@ -1,0 +1,121 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<style>
+	.container{font-family: Arial; width: 50%;}
+	#description {font-size: 14px;}
+</style>
+<!-- Create a div where the graph will take place -->
+<div class="container">
+	<div id="my_dataviz"><h2>Veterinary Hospitals in Canada</h2></div>
+<div><p>This treemap shows the number of veterinary hospitals in select Canadian cities. The tree map has 2 types of interactions. You can zoom and move the chart around the screen by using your scroll wheel of your mouse and clicking onto the treemap. The second type of interaction requires you to hover over the boxes/areas of the treemap to get a tool tip that tells you the exact number of veterinary hospitals located on the highlighted Canadian city.</p></div>
+</div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+  width = 600 - margin.left - margin.right,
+  height = 600 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", 3000)
+  .attr("height", 600)
+  .call(d3.zoom().on("zoom", function () {
+       svg.attr("transform", d3.event.transform)
+    }))
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+// Read data
+d3.csv('https://raw.githubusercontent.com/sottocid/d3.js-workshop/main/workshop-d3-hospitals.csv', function(data) {
+
+  // stratify the data: reformatting for d3.js
+  var root = d3.stratify()
+    .id(function(d) { return d.name; })   // Name of the entity (column name is name in csv)
+    .parentId(function(d) { return d.parent; })   // Name of the parent (column name is parent in csv)
+    (data);
+  root.sum(function(d) { return +d.value })   // Compute the numeric value for each entity
+
+  // Then d3.treemap computes the position of each element of the hierarchy
+  // The coordinates are added to the root object above
+  d3.treemap()
+    .size([width, height])
+    .padding(4)
+    (root)
+
+console.log(root.leaves())
+	
+ // create a tooltip
+  var Tooltip = d3.select("#my_dataviz")
+    .append("div")
+  	.style("position", "absolute")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "1px")
+    .style("border-radius", "5px")
+    .style("padding", "7px")
+
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+	  .style("transition-duration", "0.5s")
+	  .style("fill", "#005852")
+  }
+  var mousemove = function(d) {
+    Tooltip
+    .html("The number of hospitals in this city is: " + d.value)
+    .style("left", (d3.mouse(this)[0]+90) + "px")
+    .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("opacity", 1)
+	  .style("fill", "#69b3a2")
+  }
+  
+  // use this information to add rectangles:
+  svg
+    .selectAll("rect")
+    .data(root.leaves())
+    .enter()
+    .append("rect")
+      .attr('x', function (d) { return d.x0; })
+      .attr('y', function (d) { return d.y0; })
+      .attr('width', function (d) { return d.x1 - d.x0; })
+      .attr('height', function (d) { return d.y1 - d.y0; })
+	  .attr("class", function(d){ return "rect" + d.key })
+      .style("stroke", "black")
+      .style("fill", "#69b3a2")
+	.on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave);
+
+  // and to add the text labels
+  svg
+    .selectAll("text")
+    .data(root.leaves())
+    .enter()
+    .append("text")
+      .attr("x", function(d){ return d.x0+10})    // +10 to adjust position (more right)
+      .attr("y", function(d){ return d.y0+20})    // +20 to adjust position (lower)
+      .attr("font-family", "Arial")
+	  .text(function(d){ return d.data.name})
+      .attr("font-size", "13px")
+      .attr("fill", "white")
+	  .style()
+	
+})
+</script>
