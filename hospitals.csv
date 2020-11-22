@@ -1,0 +1,8 @@
+﻿name ,parent,value
+ontario ,,
+Montreal ,ontario,49
+Toronto,ontario,56
+Winnipeg ,ontario,31
+Edmonton ,ontario,23
+Calgary ,ontario,27
+Vancouver ,ontario,38
